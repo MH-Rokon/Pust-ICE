@@ -1,0 +1,43 @@
+{% extends 'base.html' %}  
+{% block content %}
+{% if form.non_field_errors %}
+<div class="alert alert-danger" role="alert">
+    <strong>Error!</strong>
+    {% for error in form.non_field_errors %}
+    {{ error }}
+    {% endfor %}
+</div>
+{% endif %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6 mt-5">
+            <div class="card">
+                <div class="card-body">
+                    <h1 class="font-bold text-3xl text-center pb-5">Login</h1>
+                    <form method="post">
+                        {% csrf_token %}
+                        {% for hidden_field in form.hidden_fields %}
+                        {{ hidden_field.errors }}
+                        {{ hidden_field }}
+                        {% endfor %}
+                        {% for field in form.visible_fields %}
+                        <div class="mb-4">
+                            <label class="form-label">{{ field.label }}</label>
+                            <input class="form-control" name="{{ field.name }}" id="{{ field.id_for_label }}" type="{{ field.widget_type }}">
+                            {% if field.errors %}
+                            {% for error in field.errors %}
+                            <div class="invalid-feedback">{{ error }}</div>
+                            {% endfor %}
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                        <div class="d-grid gap-2">
+                            <button class="btn btn-primary btn-block" type="submit">Log In</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

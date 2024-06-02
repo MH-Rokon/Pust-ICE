@@ -1,0 +1,250 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ teacher.first_name }} {{ teacher.last_name }}</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #f7f7f7; /* Old browsers */
+            background: -webkit-linear-gradient(to right, #f7f7f7, #f2f2f2); /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #f7f7f7, #f2f2f2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        }
+        
+        .teacher-details-container {
+            background: #f2f2f2; /* Old browsers */
+            background: -webkit-linear-gradient(to right, #f2f2f2, #f8f9fa); /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #f2f2f2, #f8f9fa); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin-top: 50px;
+        }
+        
+        .card {
+            background: #f8f9fa; /* Old browsers */
+            background: -webkit-linear-gradient(to right, #f8f9fa, #f2f2f2); /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #f8f9fa, #f2f2f2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px 10px;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .card-body {
+            position: relative;
+        }
+        
+        .card-body::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.5));
+            pointer-events: none;
+        }
+        
+        h1 {
+            font-family: 'Arial Black', sans-serif; /* Bold font */
+            font-size: 2.5em;
+            color: #4059ad; /* Blue color */
+        }
+        
+        h2 {
+            font-family: 'Arial', sans-serif; /* Normal font */
+            font-size: 1.8em;
+            color: #24410a; /* Greenish color */
+        }
+        
+        p {
+            font-family: 'Arial', sans-serif; /* Normal font */
+            font-size: 1.1em;
+            color: #81d4d8; /* Light blue color */
+        }
+        
+        /* Decorative Elements */
+        .section::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 5px;
+            background-color: #4059ad; /* Blue color */
+            border-radius: 5px;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .section:hover::before {
+            background-color: #24410a; /* Greenish color */
+            transform: translateX(-50%) scale(1.2);
+        }
+        
+        .section h2 {
+            border-bottom: none;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            color: #4059ad; /* Blue color */
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .section:hover h2 {
+            color: #24410a; /* Greenish color */
+        }
+        
+        .section ul li:before {
+            content: '\2022'; /* Bullet Point */
+            color: #81d4d8; /* Light blue color */
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+            transition: all 0.3s ease-in-out;
+        }
+        
+        .section ul li:hover:before {
+            color: #4059ad; /* Blue color */
+        }
+        
+        /* Background color variations */
+        body {
+            transition: background-color 0.5s ease-in-out;
+        }
+        
+        body.scroll-1 {
+            background: #f2f2f2; /* Old browsers */
+            background: -webkit-linear-gradient(to right, #f2f2f2, #ececf0); /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #f2f2f2, #ececf0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        }
+        
+        body.scroll-2 {
+            background: #ececf0; /* Old browsers */
+            background: -webkit-linear-gradient(to right, #ececf0, #f0f9f8); /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #ececf0, #f0f9f8); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        }
+        
+        body.scroll-3 {
+            background: #f0f9f8; /* Old browsers */
+            background: -webkit-linear-gradient(to right, #f0f9f8, #f5f0e1); /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #f0f9f8, #f5f0e1); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        }
+        
+        body.scroll-4 {
+            background: #f5f0e1; /* Old browsers */
+            background: -webkit-linear-gradient(to right, #f5f0e1, #faf3e0); /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #f5f0e1, #faf3e0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        }
+        
+        body.scroll-5 {
+            background: #faf3e0; /* Old browsers */
+            background: -webkit-linear-gradient(to right, #faf3e0, #f7f7f
+          
+     
+    </style>
+</head>
+
+<body>
+    <div class="container teacher-details-container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        {% if teacher.image %}
+                            <img src="{{ teacher.image.url }}" alt="{{ teacher.first_name }}" class="img-fluid profile-image">
+                        {% else %}
+                            <img src="{% static 'placeholder.png' %}" alt="{{ teacher.first_name }}" class="img-fluid profile-image">
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body profile-info">
+                        <h1>{{ teacher.first_name }} {{ teacher.last_name }}</h1>
+                        <p><strong>Designation:</strong> {{ teacher.designation }}</p>
+                        <p><strong>Department:</strong> {{ teacher.department }}</p>
+                        <p><strong>Contact No:</strong> {{ teacher.contact_no }}</p> 
+                        <p><strong>Email:</strong> {{ teacher.email }}</p> 
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card section">
+                    <div class="card-body education-card">
+                        <h2>Education</h2>
+                        <ul>
+                            {% for education in educations %}
+                                <li>{{ education.degree }} from {{ education.institution }} ({{ education.year }})</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card section">
+                    <div class="card-body experience-card">
+                        <h2>Experience</h2>
+                        <ul>
+                            {% for experience in experiences %}
+                                <li>{{ experience.position }} at {{ experience.organization }} from {{ experience.start_date }} to {% if experience.end_date %}{{ experience.end_date }}{% else %}Present{% endif %}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card section">
+                    <div class="card-body">
+                        <h2>Publications</h2>
+                        <div class="row">
+                            {% for publication in publications %}
+                                <div class="col-md-6">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <h5 class="card-title">{{ publication.title }}</h5>
+                                            <p class="card-text">{{ publication.journal }} - {{ publication.year }}</p>
+                                            {% if publication.doi %}
+                                                <p class="card-text">DOI: <a href="https://doi.org/{{ publication.doi }}" target="_blank">{{ publication.doi }}</a></p>
+                                            {% endif %}
+                                            {% if publication.url %}
+                                                <p class="card-text">URL: <a href="{{ publication.url }}" target="_blank">{{ publication.url }}</a></p>
+                                            {% endif %}
+                                            <p class="card-text">Volume: {{ publication.volume }} Issue: {{ publication.issue }} Pages: {{ publication.pages }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+{% endblock %}
+</html>

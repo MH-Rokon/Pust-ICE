@@ -1,0 +1,93 @@
+{% extends 'base2.html' %} 
+{% load static %}
+{% block content2 %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teachers List</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .rounded-image {
+            width: 150px; /* Set desired width */
+            height: 150px; /* Set desired height */
+            border-radius: 50%; /* Make it circular */
+            object-fit: cover; /* Maintain aspect ratio */
+            margin: auto; /* Center horizontally */
+            display: block; /* Ensure it's a block-level element */
+        }
+        
+        .footer {
+            background-color: transparent; /* Remove background color */
+        }
+        body {
+            background-image: url('/static/pust.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0; /* Remove default body margin */
+            padding: 0; /* Remove default body padding */
+        }
+        
+        /* Card Styling */
+        .card {
+            border: none;
+            background-color: #f8f9fa; /* Light gray background */
+            padding: 20px;
+            transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition */
+        }
+        
+        .card:hover {
+            transform: translateY(-5px); /* Move the card up slightly on hover */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Add shadow effect */
+        }
+        
+        /* Text Pop-up Styling */
+        .card-title:hover,
+        .card-text:hover {
+            color: #0056b3; /* Change text color on hover */
+            font-weight: bold; /* Bold font on hover */
+        }
+        
+        /* Add hover effect to images */
+        .rounded-image:hover {
+            transform: scale(1.1); /* Scale up the image on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Office Staff </h1>
+        <div class="row">
+            {% for teacher in data %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    <div class="image-container">
+                        {% if teacher.image %}
+                        <img src="{{ teacher.image.url }}" class="rounded-image" alt="{{ teacher.first_name }}">
+                        {% else %}
+                        <img src="{% static 'placeholder.png' %}" class="rounded-image" alt="{{ teacher.first_name }}">
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title">{{ teacher.first_name }} {{ teacher.last_name }}</h5>
+                        <p class="card-text">{{ teacher.designation }}</p>
+                        <p class="card-text">{{ teacher.department }}</p>
+                        <p><strong>Contact No:</strong> {{ teacher.contact_no }}</p> 
+                        <p><strong>Email:</strong> {{ teacher.email }}</p> 
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+
+{% endblock %}

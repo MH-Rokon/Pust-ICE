@@ -1,0 +1,93 @@
+{% extends 'base2.html' %} 
+{% load static %}
+{% block content2 %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Programs Offered</title>
+    <style>
+        .navbar,
+        .footer {
+            background-color: transparent; /* Remove background color */
+        }
+        body {
+            background-image: url('/static/p.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            margin: 0; /* Remove default body margin */
+            padding: 0; /* Remove default body padding */
+        }
+        .programs-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+         
+            background-image: url('/static/it.avif');
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        h1 {
+            text-align: center;
+            color: #333333;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        .program-item {
+            background-color: #CCFFCC;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 18px;
+            color: #555555;
+            transition: background-color 0.3s ease;
+        }
+        .program-item:hover {
+            background-color: #d4d4d4;
+        }
+        .bsc-program {
+            /* Custom styles for B.Sc. Program */
+        }
+        .msc-program {
+            /* Custom styles for M.Sc. Program */
+        }
+        .meng-program {
+            /* Custom styles for M.Engg. Program */
+        }
+        .mphil-program {
+            /* Custom styles for M.Phil. Program */
+        }
+        .phd-program {
+            /* Custom styles for Ph.D. Program */
+        }
+        @media (max-width: 600px) {
+            .programs-container {
+                padding: 15px;
+            }
+            .program-item {
+                font-size: 16px;
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="programs-container">
+        <h1 style="color: #CCFFCC;">Programs Offered</h1>
+        <ul>
+            <li class="program-item bsc-program">Four Years B.Sc. (Engg.) Program</li>
+            <li class="program-item msc-program">One and Half Years M.Sc. (Engg.) Program</li>
+            <li class="program-item meng-program">One and Half Years M. (Engg.) Program</li>
+            <li class="program-item mphil-program">Two Years (Minimum) M.Phil. Research Program</li>
+            <li class="program-item phd-program">Three Years (Minimum) Ph.D. Research Program</li>
+        </ul>
+    </div>
+</body>
+</html>
+{% endblock %}
