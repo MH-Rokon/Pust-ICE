@@ -71,7 +71,7 @@ WSGI_APPLICATION = 'ice.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default='postgres://ice_z56k_user:4Djnjp0qhc91daCJH91pzGyMWPGqnF0G@dpg-cpe8idv109ks73erh7q0-a.oregon-postgres.render.com/ice_z56k',
+        default='postgres://pust_ice_user:Scbw7INOteN4PrK9jlYuHTmclXFaHk76@dpg-cpe98k7sc6pc739broag-a.oregon-postgres.render.com/pust_ice',
     )
 }
 
