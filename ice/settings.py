@@ -17,7 +17,7 @@ SECRET_KEY = 'django-insecure-8xwhfe6lh(vh6nd1eaq@aj_nsa)co8vy8kyuj*j^fe2!rzc-ye
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-CSRF_TRUSTED_ORIGINS = ['https://ice-7c32.onrender.com', 'https://*.127.0.0.1']
+CSRF_TRUSTED_ORIGINS = ['https://pust-ice.onrender.com', 'https://*.127.0.0.1']
 
 # Application definition
 
