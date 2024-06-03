@@ -2,12 +2,12 @@ from django.db import models
 class OfficeStaff(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='faculty_member/media/uploads/', blank=True, null=True)
+    image = models.ImageField(blank=True, null=True)
     designation = models.CharField(max_length=100)
     department = models.CharField(max_length=100)
     staff_id = models.AutoField(primary_key=True)
-    contact_no = models.CharField(max_length=15, blank=True, null=True)  # Added field
-    email = models.EmailField(max_length=254, blank=True, null=True)  # Added field
+    contact_no = models.CharField(max_length=15, blank=True, null=True)  
+    email = models.EmailField(max_length=254, blank=True, null=True)  
     def __str__(self):
         return f"{self.first_name} {self.last_name} - {self.designation} - {self.department}"
 
@@ -15,7 +15,7 @@ class OfficeStaff(models.Model):
 class Teacher(models.Model):
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
-    image = models.ImageField(upload_to='faculty_member/media/uploads/', blank=True, null=True)
+    image = models.ImageField(blank=True, null=True)
     designation = models.CharField(max_length=100)
     department = models.CharField(max_length=100)
     teacher_id = models.AutoField(primary_key=True)
